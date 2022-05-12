@@ -57,11 +57,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XgC-85-VxQ">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="doc.fill.badge.plus" catalog="system" id="bzl-Zp-JNT"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="doc.fill.badge.plus" catalog="system" id="bzl-Zp-JNT">
+                            <connections>
+                                <action selector="nuevaTarea:" destination="BYZ-38-t0r" id="6NY-SA-IoM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tablaTareas" destination="Lo7-vD-FsF" id="avS-cN-A63"/>
-                        <segue destination="GmT-9Z-cyr" kind="show" identifier="" id="vh0-5c-Koc"/>
+                        <segue destination="GmT-9Z-cyr" kind="show" identifier="nuevo" id="vh0-5c-Koc"/>
+                        <segue destination="qqG-LT-eJH" kind="show" id="r8T-Kc-xw0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -71,7 +76,7 @@
         <!--NUEVO-->
         <scene sceneID="typ-cq-vtO">
             <objects>
-                <viewController id="GmT-9Z-cyr" sceneMemberID="viewController">
+                <viewController id="GmT-9Z-cyr" customClass="NuevaTareaViewController" customModule="Tareas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dhb-Rw-U3x">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,23 +122,31 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="NUEVO" id="mxO-BK-LEj">
-                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="NGa-QO-GSP"/>
+                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="NGa-QO-GSP">
+                            <connections>
+                                <action selector="guardarTareaBtn:" destination="GmT-9Z-cyr" id="U5Z-OH-6TN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="fechaTareaPicker" destination="fSX-67-eFn" id="xhe-bm-cvE"/>
+                        <outlet property="textoTareaTxtF" destination="exu-Ow-VvX" id="zS7-oq-FjQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khU-Aj-V0E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1827.5362318840582" y="121.875"/>
+            <point key="canvasLocation" x="2017" y="327"/>
         </scene>
-        <!--View Controller-->
+        <!--EDITAR-->
         <scene sceneID="Va8-Ty-Xss">
             <objects>
-                <viewController id="qqG-LT-eJH" sceneMemberID="viewController">
+                <viewController id="qqG-LT-eJH" customClass="EditarTareaViewController" customModule="Tareas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sqU-k5-PCF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="OcV-Sa-k0J">
-                                <rect key="frame" x="0.0" y="30" width="414" height="802"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="662"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="escribe tu texto aqui" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qgf-at-33G">
                                         <rect key="frame" x="32" y="0.0" width="350" height="150"/>
@@ -144,24 +157,24 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha de realizacion de tareas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHn-TF-QRl">
-                                        <rect key="frame" x="64" y="180" width="286.5" height="26.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Fecha de realizacion de tareas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHn-TF-QRl">
+                                        <rect key="frame" x="64" y="180" width="286.5" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kss-j0-HdZ">
-                                        <rect key="frame" x="47" y="236.5" width="320" height="265.5"/>
+                                    <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kss-j0-HdZ">
+                                        <rect key="frame" x="47" y="210" width="320" height="152"/>
                                     </datePicker>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.down.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="v3D-gF-c2c">
-                                        <rect key="frame" x="57" y="532" width="300" height="200"/>
+                                        <rect key="frame" x="57" y="392" width="300" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="RUT-Ur-QdS"/>
                                             <constraint firstAttribute="width" constant="300" id="iau-tu-MMd"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Sy-uE-wkr">
-                                        <rect key="frame" x="57" y="762" width="300" height="40"/>
+                                        <rect key="frame" x="57" y="622" width="300" height="40"/>
                                         <color key="backgroundColor" red="1" green="0.52120530610000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ILE-Zk-J9u"/>
@@ -183,16 +196,20 @@
                         <viewLayoutGuide key="safeArea" id="YZZ-pn-TCm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="YZZ-pn-TCm" firstAttribute="bottom" secondItem="OcV-Sa-k0J" secondAttribute="bottom" constant="100" id="3s4-Y4-fuV"/>
                             <constraint firstItem="YZZ-pn-TCm" firstAttribute="trailing" secondItem="OcV-Sa-k0J" secondAttribute="trailing" id="4qK-op-OOp"/>
-                            <constraint firstItem="OcV-Sa-k0J" firstAttribute="top" secondItem="sqU-k5-PCF" secondAttribute="top" constant="30" id="iwX-m7-NHs"/>
-                            <constraint firstItem="YZZ-pn-TCm" firstAttribute="bottom" secondItem="OcV-Sa-k0J" secondAttribute="bottom" constant="30" id="nNe-dE-va3"/>
                             <constraint firstItem="OcV-Sa-k0J" firstAttribute="leading" secondItem="sqU-k5-PCF" secondAttribute="leading" id="yMk-V1-4yH"/>
+                            <constraint firstItem="OcV-Sa-k0J" firstAttribute="top" secondItem="sqU-k5-PCF" secondAttribute="top" constant="100" id="yxS-pU-2LN"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="EDITAR" id="V2P-hv-gaf"/>
+                    <connections>
+                        <outlet property="tituloElemento" destination="qgf-at-33G" id="suv-ur-jJ6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTf-ZY-Gav" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2615" y="106"/>
+            <point key="canvasLocation" x="1981" y="-335"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H9f-ks-MUf">
