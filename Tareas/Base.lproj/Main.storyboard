@@ -189,6 +189,9 @@
                                                 <integer key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="guardarBtn:" destination="qqG-LT-eJH" eventType="touchUpInside" id="Gh0-jb-wVY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -204,6 +207,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="EDITAR" id="V2P-hv-gaf"/>
                     <connections>
+                        <outlet property="fechaElemento" destination="kss-j0-HdZ" id="nRH-D4-WdF"/>
                         <outlet property="tituloElemento" destination="qgf-at-33G" id="suv-ur-jJ6"/>
                     </connections>
                 </viewController>

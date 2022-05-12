@@ -9,7 +9,7 @@ import UIKit
 // core data paso 1
 import CoreData
 
-class NuevaTareaViewController: UIViewController {
+class NuevaTareaViewController: UIViewController, UITextFieldDelegate{
     
     //MARK: vinculamos los
     
@@ -20,6 +20,9 @@ class NuevaTareaViewController: UIViewController {
     let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     override func viewDidLoad() {
         super.viewDidLoad()
+        //habilitar
+        textoTareaTxtF.delegate = self
+        textoTareaTxtF.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
     }

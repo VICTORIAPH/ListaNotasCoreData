@@ -11,14 +11,36 @@ import CoreData
 class EditarTareaViewController: UIViewController {
     
     var recibirTarea: Tarea?
-
+    //MARK: CONECCION A LA BD O AL CONTEXTO
+    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     @IBOutlet weak var tituloElemento: UITextField!
+    
+    @IBOutlet weak var fechaElemento: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tituloElemento.text = recibirTarea?.titulo ?? ""
+        fechaElemento.date = (recibirTarea?.fecha)! 
        
     }
+    
+    
+    @IBAction func guardarBtn(_ sender: Any) {
+        //definir que vamos a guardar si modificamos algo
+        recibirTarea?.titulo = tituloElemento.text ?? ""
+        recibirTarea?.fecha = fechaElemento.date
+        
+        do{
+            try contexto.save()
+        }catch{
+            print(error.localizedDescription)
+        }
+        //Regresar al VC principal
+        navigationController?.popViewController(animated: true)
+        
+    }
+  
     
 
 
