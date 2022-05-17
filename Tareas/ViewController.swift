@@ -10,14 +10,16 @@ import CoreData
 
 class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
 
-    
-    //MARK: - Variables
-    var listaTareas = [Tarea]()
-   
     @IBAction func nuevaTarea(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "nuevo", sender: self)
     }
     @IBOutlet weak var tablaTareas: UITableView!
+    
+    //MARK: - Variables
+    var listaTareas = [Tarea]()
+    var tareaEnviar = Tarea?.self
+   
+
     //MARK: CONECCION A LA BD O AL CONTEXTO
     let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -26,7 +28,10 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
         // Do any additional setup after loading the view.
         //Delegado
         tablaTareas.delegate = self
-        tablaTareas.delegate = self
+        tablaTareas.dataSource = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        leerTareas()
     }
     
     func leerTareas(){
@@ -40,20 +45,24 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
         tablaTareas.reloadData()
     }
     
+    @IBAction func agregarTareaBtn(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "nuevo", sender: self)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listaTareas.count
     }
-    
+    //MARK: - TABLA METODOS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let celda = tablaTareas.dequeueReusableCell(withIdentifier: "nuevo", for: indexPath)
+        //GUARDAMOS TAREA   A MANDAR
+        tareaEnviar = listaTareas[indexPath.row]
+        performSegue(withIdentifier: "editar", sender: self)
         
-        celda.textLabel?.text = listaTareas[indexPath.row].titulo
-        celda.detailTextLabel?.text = "\(listaTareas[indexPath.row].fecha!)"
-        return celda
     }
-    
-
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editar"{
+            let objDestino = segue.destination as! EditarTareaViewController
+            objDestino.recibirTarea = tareaEnviar
+        }
+    }
 }
-

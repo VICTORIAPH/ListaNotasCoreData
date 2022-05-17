@@ -59,14 +59,14 @@
                     <navigationItem key="navigationItem" id="XgC-85-VxQ">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="doc.fill.badge.plus" catalog="system" id="bzl-Zp-JNT">
                             <connections>
-                                <action selector="nuevaTarea:" destination="BYZ-38-t0r" id="6NY-SA-IoM"/>
+                                <action selector="agregarTareaBtn:" destination="BYZ-38-t0r" id="M6X-8B-2As"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tablaTareas" destination="Lo7-vD-FsF" id="avS-cN-A63"/>
                         <segue destination="GmT-9Z-cyr" kind="show" identifier="nuevo" id="vh0-5c-Koc"/>
-                        <segue destination="qqG-LT-eJH" kind="show" id="r8T-Kc-xw0"/>
+                        <segue destination="qqG-LT-eJH" kind="show" identifier="editar" id="r8T-Kc-xw0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

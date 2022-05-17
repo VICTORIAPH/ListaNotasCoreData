@@ -30,12 +30,15 @@ class NuevaTareaViewController: UIViewController, UITextFieldDelegate{
     @IBAction func guardarTareaBtn(_ sender: UIBarButtonItem) {
         //validar que no este vacio el textFiel        if let tituloTarea = textoTareaTxtF.text, !tituloTarea.isEmpty{
             //crear una fecha
+        if  let tituloTarea = textoTareaTxtF.text, !tituloTarea.isEmpty{
             let fechaTarea = fechaTareaPicker.date
-            
+        
+           
+         
             //crear un obj o tarea
             let nuevoElemento = Tarea(context: self.contexto)
             
-            nuevoElemento.titulo = tituloTarea
+            nuevoElemento.titulo  = tituloTarea
             nuevoElemento.fecha = fechaTarea
             
             //guardamos
@@ -47,9 +50,10 @@ class NuevaTareaViewController: UIViewController, UITextFieldDelegate{
             }
             //Regresar a la pantalla anteriior
         navigationController?.popViewController(animated: true)
-        }else{
+    }else{
             print("Escribe algo")
             textoTareaTxtF.placeholder = "Necesitas escribir una nota para guiardar"
         }
     }
     
+}
