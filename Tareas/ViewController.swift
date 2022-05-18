@@ -17,7 +17,7 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
     
     //MARK: - Variables
     var listaTareas = [Tarea]()
-    var tareaEnviar = Tarea?.self
+    var tareaEnviar = Tarea?
    
 
     //MARK: CONECCION A LA BD O AL CONTEXTO
@@ -50,26 +50,30 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
             print(error.localizedDescription)
         }
         tablaTareas.reloadData()
-    }
+    }//fnc leer
     
-    @IBAction func agregarTareaBtn(_ sender: UIBarButtonItem) {
+    //NAVEGAR HACIA NUEVATAREACONTROLLER
+        @IBAction func agregarTareaBtn(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "nuevo", sender: self)
     }
     
+ 
+    //MARK: - TABLA METODOS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listaTareas.count
     }
-    //MARK: - TABLA METODOS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //GUARDAMOS TAREA   A MANDAR
-        tareaEnviar = listaTareas[indexPath.row]
-        performSegue(withIdentifier: "editar", sender: self)
+        let celda = tablaTareas.dequeueReusableCell(withIdentifier: "celda", for: indexPath)
+        celda.textLabel?.text = listaTareas[indexPath.row].titulo
         
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editar"{
             let objDestino = segue.destination as! EditarTareaViewController
             objDestino.recibirTarea = tareaEnviar
         }
     }
+  
 }
