@@ -11,11 +11,13 @@ import CoreData
 class EditarTareaViewController: UIViewController {
     
     var recibirTarea: Tarea?
+    var recibirImage: Tarea?
     //MARK: CONECCION A LA BD O AL CONTEXTO
     let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var tituloElemento: UITextField!
     
+    @IBOutlet weak var editarImage: UIImageView!
     @IBOutlet weak var fechaElemento: UIDatePicker!
     
     override func viewDidLoad() {
@@ -30,6 +32,7 @@ class EditarTareaViewController: UIViewController {
         //definir que vamos a guardar si modificamos algo
         recibirTarea?.titulo = tituloElemento.text ?? ""
         recibirTarea?.fecha = fechaElemento.date
+        recibirImage?.image = editarImage.image
         
         do{
             try contexto.save()

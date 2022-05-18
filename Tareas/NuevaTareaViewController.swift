@@ -15,6 +15,7 @@ class NuevaTareaViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var textoTareaTxtF: UITextField!
     @IBOutlet weak var fechaTareaPicker: UIDatePicker!
+    @IBOutlet weak var nuevoImage: UIImageView!
     
     //MARK: CONECCION A LA BD O AL CONTEXTO
     let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -30,12 +31,11 @@ class NuevaTareaViewController: UIViewController, UITextFieldDelegate{
     @IBAction func guardarTareaBtn(_ sender: UIBarButtonItem) {
         //validar que no este vacio el textFiel        if let tituloTarea = textoTareaTxtF.text, !tituloTarea.isEmpty{
             //crear una fecha
-        if  let tituloTarea = textoTareaTxtF.text, !tituloTarea.isEmpty{
+            if  let tituloTarea = textoTareaTxtF.text, !tituloTarea.isEmpty{
             let fechaTarea = fechaTareaPicker.date
         
-           
-         
-            //crear un obj o tarea
+                
+                //crear un obj o tarea
             let nuevoElemento = Tarea(context: self.contexto)
             
             nuevoElemento.titulo  = tituloTarea
@@ -48,7 +48,8 @@ class NuevaTareaViewController: UIViewController, UITextFieldDelegate{
             }catch{
                 print(error.localizedDescription)
             }
-            //Regresar a la pantalla anteriior
+            
+                //Regresar a la pantalla anteriior
         navigationController?.popViewController(animated: true)
     }else{
             print("Escribe algo")

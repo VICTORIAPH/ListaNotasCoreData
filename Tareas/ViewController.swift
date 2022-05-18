@@ -25,10 +25,17 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         //Delegado
         tablaTareas.delegate = self
         tablaTareas.dataSource = self
+        //leer info de la BD
+        leerTareas()
+        //formato FECHA
+        let today = Date()
+        let formatter1 = DateFormatter()
+        formatter1.dateStyle = .medium
+        print(formatter1.string(from: today))
     }
     override func viewWillAppear(_ animated: Bool) {
         leerTareas()
